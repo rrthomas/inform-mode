@@ -362,9 +362,9 @@ keyword.")
 
 (eval-and-compile
   (defvar inform-directive-regexp
-    (concat "\\<#?\\("
+    (concat "\\<#?"
             (inform-make-regexp inform-directive-list)
-            "\\)\\>")
+            "\\>")
     "Regular expression matching an Inform directive.")
 
   (defvar inform-defining-list-regexp
@@ -375,9 +375,7 @@ keyword.")
     "Regular expression matching start of object declaration.")
 
   (defvar inform-property-regexp
-    (concat "\\s-*\\("
-            (inform-make-regexp inform-property-list)
-            "\\)")
+    (concat "\\s-*" (inform-make-regexp inform-property-list))
     "Regular expression matching Inform properties."))
 
 
@@ -457,10 +455,10 @@ That is, one found at the start of a line.")
        (1 font-lock-keyword-face))
 
      ;; Attributes and properties.
-     (cons (concat "[^#]\\<\\("
+     (cons (concat "[^#]\\<"
                    (inform-make-regexp (append inform-attribute-list
                                                inform-property-list))
-                   "\\)\\>")
+                   "\\>")
            '(1 font-lock-variable-name-face))))
   "Expressions to fontify in Inform mode.")
 
