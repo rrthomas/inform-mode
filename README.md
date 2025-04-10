@@ -27,7 +27,7 @@ can also run a Z-code interpreter on the compiled code.
 
 It should work on any recent GNU Emacs.
 
-See [NEWS](https://github.com/rrthomas/inform-mode/blob/master/NEWS) for
+See the [news page](https://rrthomas.github.io/inform-mode/news.html) for
 details of recent changes.
 
 
