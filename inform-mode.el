@@ -7,8 +7,9 @@
 ;; Created: 1 Dec 1994
 ;; Version: 1.6.2
 ;; Released: 10-Oct-2013
-;; Url: https://rrthomas.github.io/inform-mode
+;; Homepage: https://rrthomas.github.io/inform-mode
 ;; Keywords: languages
+;; Package-Requires: ((emacs "24.1"))
 
 ;;; Copyright:
 
@@ -376,8 +377,7 @@ keyword.")
       "quit" "read" "remove" "restore" "return" "rfalse" "rtrue" "save"
       "spaces" "string" "style bold" "style fixed" "style reverse"
       "style roman" "style underline" "switch" "to" "until" "while")
-    "List of Inform code keywords.")
-  )
+    "List of Inform code keywords."))
 
 ;; Some regular expressions are needed at compile-time too so as to
 ;; avoid postponing the work to load time.
@@ -948,8 +948,7 @@ left is whitespace)."
                 (skip-syntax-backward "^\"")
                 (forward-char -1)
                 (setq string-start (point))
-                (setq string-indent (current-column))
-                ))
+                (setq string-indent (current-column))))
 
           ;; Now find the start of the sexp containing point.  Most
           ;; likely, the location was found by `inform-syntax-class';
@@ -1051,8 +1050,7 @@ left is whitespace)."
                     (+ (current-column)
                        (if (memq this-char '(?} ?{))
                            0
-                         inform-indent-level)))
-              ))
+                         inform-indent-level)))))
 
             ;; We calculated the indentation for the start of the
             ;; string; correct this for the remainder of the string if
