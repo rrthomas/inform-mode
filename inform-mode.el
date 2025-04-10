@@ -1,4 +1,4 @@
-;;; inform-mode.el --- Major mode for Inform 6 interactive fiction code
+;;; inform-mode.el --- Major mode for Inform 6 interactive fiction code -*- lexical-binding: t; -*-
 
 ;; Maintainer: Reuben Thomas <rrt@sc3d.org>
 ;; Author: Rupert Lane <rupert@rupert-lane.org>
@@ -92,7 +92,7 @@
 (defcustom inform-auto-newline t
   "*Non-nil means automatically newline before/after braces, after semicolons.
 If you do not want a leading newline before opening braces then use:
-  \(define-key inform-mode-map \"{\" 'inform-electric-semi\)"
+  (define-key inform-mode-map \"{\" \\='inform-electric-semi)"
   :type 'boolean
   :group 'inform-mode)
 
@@ -204,8 +204,8 @@ If you do not want a leading newline before opening braces then use:
   "*Variable controlling indentation of multi-line strings.
 If nil (default), string will be indented according to context.
 If a number, will always set the indentation to that column.
-If 'char', will line up with the first character of the string.
-If 'quote', or other non-nil value, will line up with open quote on
+If `char', will line up with the first character of the string.
+If `quote', or other non-nil value, will line up with open quote on
 first line."
   :type '(radio (const :tag "Indent according to context" nil)
                 (integer :tag "Column to indent to")
@@ -514,14 +514,14 @@ That is, one found at the start of a line.")
 * Multi-file projects:
 
   The variable `inform-project-file' gives the name of the root file of
-  the project \(i.e., the one that you run Inform on\)\; it is best to
+  the project (i.e., the one that you run Inform on); it is best to
   set this as a local variable in each file, for example by making
      ! -*- inform-project-file:\"game.inf\" -*-
   the first line of the file.
 
 * Tags tables:
 
-  Type \\[inform-retagify] to build \(and load\) a Tags table.
+  Type \\[inform-retagify] to build (and load) a Tags table.
   Type \\[visit-tags-table] to load an existing Tags table.
   If it exists, and if the variable `inform-autoload-tags' is non-NIL,
   the Tags table is loaded on entry to Inform Mode.
@@ -584,42 +584,42 @@ That is, one found at the start of a line.")
 
   Values in parentheses are the default indentation style.
 
-  inform-indent-property \(8\)
+  inform-indent-property (8)
     Indentation of a property or attribute in an object declaration.
 
-  inform-indent-has-with-class \(1\)
+  inform-indent-has-with-class (1)
     Indentation of has/with/class/private lines in object declaration.
 
-  inform-indent-level \(4\)
+  inform-indent-level (4)
     Indentation of line of code in a block relative to the first line of
     the block.
 
-  inform-indent-label-offset \(-3\)
+  inform-indent-label-offset (-3)
     Indentation of a line starting with a label, relative to the
     indentation if the label were absent.
 
-  inform-indent-cont-statement \(4\)
+  inform-indent-cont-statement (4)
     Indentation of second and subsequent lines of a statement, relative
     to the first.
 
-  inform-indent-fixup-space \(T\)
+  inform-indent-fixup-space (t)
     If non-NIL, fix up space after `Object', `Class', `Nearby', `has',
     `private' and `with', so that all the object's properties line up.
 
-  inform-indent-action-column \(40\)
+  inform-indent-action-column (40)
     Column at which action names should be placed in verb declarations.
     If NIL, then action names are not moved.
 
-  inform-comments-line-up-p \(NIL\)
+  inform-comments-line-up-p (nil)
     If non-NIL, comments spread out over several lines will start on the
     same column as the first comment line.
 
-  inform-strings-line-up-p \(NIL\)
+  inform-strings-line-up-p (nil)
     Variable controlling indentation of multi-line strings.
     If nil (default), string will be indented according to context.
     If a number, will always set the indentation to that column.
-    If 'char', will line up with the first character of the string.
-    If 'quote', or other non-nil value, will line up with open quote on
+    If `char', will line up with the first character of the string.
+    If `quote', or other non-nil value, will line up with open quote on
     first line.
 
 * User options to do with compilation:
@@ -653,10 +653,7 @@ That is, one found at the start of a line.")
 
   inform-interpreter-is-graphical
     If NIL, `inform-run-project' will switch to the interpreter buffer
-    after running the interpreter.
-
-
-* Please send any bugs or comments to rupert@rupert-lane.org"
+    after running the interpreter."
 
   (interactive)
   (if inform-startup-message
@@ -740,7 +737,7 @@ It is assumed that point is not inside a string or comment."
 
 (defun inform-preceding-token ()
   "Return preceding non-blank, non-comment token in buffer.
-Either the character itself, or the tokens 'do or 'else. It is
+Either the character itself, or the tokens \\='do or \\='else. It is
 assumed that point is not inside a string or comment."
   (save-excursion
     (while (/= (point) (progn (forward-comment -1) (point))))
@@ -1175,7 +1172,7 @@ Assume point is on the comment."
 
 (defun inform-indent-line ()
   "Indent line containing point.
-Keep point at the 'logically' same place, unless point was before
+Keep point at the `logically' same place, unless point was before
 new indentation, in which case place point at indentation."
   (let ((oldpos (- (point-max) (point))))
     (forward-line 0)
@@ -1209,6 +1206,7 @@ new indentation, in which case place point at indentation."
   "Fill quoted string or comment containing point.
 To fill a quoted string, point must be between the quotes. Deals
 appropriately with trailing backslashes. ARG is ignored."
+  (ignore arg)
   (let* ((data (inform-syntax-class))
          (syntax (car data))
          (case-fold-search t))
