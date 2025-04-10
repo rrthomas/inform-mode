@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>inform-mode: documentation</title>
+    <meta name="description" content="inform-mode documentation in detail">
+    <meta name="author" content="Rupert Lane">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/inform-mode.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand"
+             href="index.html"> <span>inform-mode</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav navbar-right"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="download.html">Download</a></li>
+              <li><a href="install.html">Installation</a></li>
+              <li class="active"><a href="doc.html">Documentation</a></li>
+              <li><a href="development.html">Development</a></li>
+            </ul>
+          </div>
+          <div class="col-md-10">
+            <p>After installation, inform-mode will be activated for
+              any files ending in .inf (and optionally .h) when you
+              visit them using Emacs. Type <code>C-h m</code> to
+              view the documentation for the mode. Variables
+              governing inform-mode can be customized;
+              type <code>M-x customize</code> and navigate to
+              Programming / Languages / inform-mode.</p>
+
+
+            <h3>Inform syntax</h3>
+
+            <p>Type <code>TAB</code> to indent the current line.</p>
+
+            <p>Type <code>C-M-\</code> to indent the region.</p>
+
+            <p>Type <code>M-q</code> to fill strings or comments.
+              This compresses multiple spaces into single
+              spaces.</p>
+
+            <h3>Multi-file projects</h3>
+
+            <p>The variable <code>inform-project-file</code> gives
+              the name of the root file of the project (i.e., the
+              one that you run Inform on); it is best to set this as
+              a local variable in each file, for example by making
+              <pre>
+! -*- inform-project-file:\"game.inf\" -*-
+              </pre>
+              the first line of the file.</p>
+
+            <h3>Tags tables</h3>
+
+            <p>Type <code>C-c C-r</code> to build (and load) a Tags
+              table.</p>
+
+            <p>Type <code>C-c C-t</code> to load an existing Tags
+              table. If it exists, and if the
+              variable <code>inform-autoload-tags</code> is non-NIL,
+              the Tags table is loaded on entry to Inform Mode. With
+              a Tags table loaded, type <code>M-.</code> to find the
+              declaration of the object, class or function under
+              point.</p>
+
+            <h3>Navigating in a file</h3>
+
+            <p>Type <code>M-p</code> to go to the previous
+              object/class declaration. Type <code>M-n</code> to go
+              to the next one.</p>
+
+            <h3>Compilation</h3>
+
+            <p>Type <code>C-c C-b</code> to build the current
+              project.</p>
+            <p>Type <code>C-x `</code> to go to the next error.</p>
+
+            <h3>Running</h3>
+
+            <p>Type <code>C-c C-c</code> to run the current project
+              in an interpreter, either as a sepaarte process or in
+              an Emacs terminal buffer.</p>
+
+            <h3>Font-lock support</h3>
+
+            <p>This is normally enabled by default in recent
+              Emacsen, but if not put <code>(add-hook
+                'inform-mode-hook 'turn-on-font-lock)</code> in your
+              .emacs.</p>
+
+            <h3>Spell checking</h3>
+
+            <p>Type <code>C-c C-s</code> to spell check all strings
+              in the buffer. Type <code>M-$</code> to check the
+              single word at point.</p>
+
+            <h3>Functions</h3>
+            <dl>
+              <dt><code>inform-maybe-mode</code></dt>
+              <dd>Looks at the contents of a file, guesses whether
+                it is an Inform program,
+                runs <code>inform-mode</code> if so,
+                or <code>inform-maybe-other</code> if not. The
+                latter defaults to <code>c-mode</code>. Used for
+                header files which might be Inform or C
+                programs.</dd>
+            </dl>
+
+            <h3>Miscellaneous user options</h3>
+
+            <dl>
+              <dt><code>inform-startup-message</code></dt>
+              <dd>Set to nil to inhibit message first time Inform
+                mode is used.</dd><br>
+
+              <dt><code>inform-maybe-other</code></dt>
+              <dd>The mode used by <code>inform-maybe-mode</code> if
+                it guesses that the file is not an Inform program.</dd><br>
+
+              <dt><code>inform-mode-hook</code></dt>
+              <dd>This hook is run after entry to Inform Mode.</dd><br>
+
+              <dt><code>inform-autoload-tags</code></dt>
+              <dd>If non-nil, then a tags table will automatically
+                be loaded when entering Inform mode.</dd><br>
+
+              <dt><code>inform-auto-newline</code></dt>
+              <dd>If non-nil, then newlines are automatically
+                inserted before and after braces, and after
+                semicolons in Inform code, and after commas in
+                object declarations.</dd>
+            </dl>
+
+            <h3>User options controlling indentation style</h3>
+
+            <p>Values in parentheses are the default indentation style.</p>
+
+            <dl>
+              <dt><code>inform-indent-property</code> (8)</dt>
+              <dd>Indentation of a property or attribute in an object
+                declaration.</dd><br>
+
+              <dt><code>inform-indent-has-with-class</code> (1)</dt>
+              <dd>Indentation of has/with/class/private lines in
+                object declaration.</dd><br>
+
+              <dt><code>inform-indent-level</code> (4)</dt>
+              <dd>Indentation of line of code in a block relative to
+                the first line of the block.</dd><br>
+
+              <dt><code>inform-indent-label-offset</code> (-3)</dt>
+              <dd>Indentation of a line starting with a label,
+                relative to the indentation if the label were
+                absent.</dd><br>
+
+              <dt><code>inform-indent-cont-statement</code> (4)</dt>
+              <dd>Indentation of second and subsequent lines of a
+                statement, relative to the first.</dd><br>
+
+              <dt><code>inform-indent-fixup-space</code> (T)</dt>
+              <dd>If non-NIL, fix up space
+                after <code>Object</code>, <code>Class</code>,
+                <code>Nearby</code>, <code>has</code>, <code>private</code>
+                and <code>with</code>, so that all the object's
+                properties line up.</dd><br>
+
+              <dt><code>inform-indent-action-column</code> (40)</dt>
+              <dd>Column at which action names should be placed in
+                verb declarations. If NIL, then action names are not
+                moved.</dd><br>
+
+              <dt><code>inform-comments-line-up-p</code> (NIL)</dt>
+              <dd>If non-NIL, comments spread out over several lines
+                will start on the same column as the first comment
+                line.</dd><br>
+
+              <dt><code>inform-strings-line-up-p</code> (NIL)</dt>
+              <dd>Variable controlling indentation of multi-line
+                strings. If nil (default), string will be indented
+                according to context. If a number, will always set the
+                indentation to that column. If 'char', will line up
+                with the first character of the string. If 'quote', or
+                other non-nil value, will line up with open quote on
+                first line.</dd><br>
+
+              <dt><code>inform-indent-semicolon</code> (T)</dt>
+              <dd>If nil, a semicolon on a line of its own will not
+                be indented.></dd>
+            </dl>
+
+            <h3>User options to do with compilation</h3>
+
+            <dl>
+              <dt><code>inform-command</code></dt>
+              <dd>The shell command with which to run the Inform
+                compiler.</dd><br>
+
+              <dt><code>inform-libraries-directory</code></dt>
+              <dd>If non-NIL, gives the directory in which the Inform
+                libraries are found.</dd><br>
+
+              <dt><code>inform-command-options</code></dt>
+              <dd>Additional options with which to call the Inform
+                compiler.</dd>
+            </dl>
+
+            <h3>User options to do with an interpreter</h3>
+
+            <dl>
+              <dt><code>inform-interpreter-command</code></dt>
+              <dd>The command with which to run the ZCode
+                interpreter. Can be a string (a command to be run),
+                a symbol (name of function to call) or a
+                function.</dd><br>
+
+              <dt><code>inform-interpreter-options</code></dt>
+              <dd>Additional options with which to call the ZCode
+                interpreter. Only used
+                if <code>inform-interpreter-command</code> is a
+                string.</dd><br>
+
+              <dt><code>inform-interpreter-kill-old-process</code></dt>
+              <dd>If non-NIL, <code>inform-run-project</code> will
+                kill any running interpreter process and start a new
+                one. If not, will switch to the interpreter's buffer
+                (if necessary - see documentation
+                for <code>inform-run-project</code> for
+                details).</dd><br>
+
+              <dt><code>inform-interpreter-is-graphical</code></dt>
+              <dd>If NIL, <code>inform-run-project</code> will
+                switch to the interpreter buffer after running the
+                interpreter.</dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

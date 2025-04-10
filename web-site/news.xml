@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>inform-mode news</title>
+  <subtitle>Releases and other announcement for Emacs inform-mode</subtitle>
+  <link rel="self"
+        href="http://www.rupert-lane.org/inform-mode/news.xml"/>
+  <updated>2013-10-10T20:00:00+08:00</updated>
+
+  <author>
+    <name>Rupert Lane</name>
+    <uri>http://www.rupert-lane.org/inform-mode/</uri>
+  </author>
+  
+  <id>http://www.rupert-lane.org/inform-mode/news.xml</id>
+  <rights>© 2013 Rupert Lane</rights>
+
+  <entry>
+    <title>inform-mode 1.6.2 released</title>
+    <id>tag:rupert-lane.org,2013-10-10:120000</id>
+    <updated>2013-10-10T20:00:00+08:00</updated>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p>inform-mode 1.6.2 has been released. It can be
+        downloaded
+        from <a href="http://www.rupert-lane.org/inform-mode/">
+        http://www.rupert-lane.org/inform-mode/</a> or via
+        github or Marmalade.</p>
+
+        <p>Changes in this version:</p>
+
+        <h3>Features</h3>
+        <ul>
+          <li>Added option inform-indent-semicolon. This will
+          govern indentation of semicolons on lines of their own
+          as per a request from Dave Robinson. The default
+          behaviour, as in previous versions, is to indent the
+          semicolon to match the current syntax. If
+          inform-indent-semicolon is set to nil then the
+          semicolon will not be indented.</li>
+        </ul>
+
+        <h3>Other changes</h3>
+        <ul>
+          <li>Add autoload hints for mode (thanks to Reuben
+          Thomas for the patch)</li>
+
+          <li>Docstrings cleanup</li>
+
+          <li>Added a note for XEmacs users regarding extra
+          packages</li>
+
+          <li>Tested on Emacs 24.3</li>
+        </ul>
+
+        <p>October 10, 2013</p>
+      </div>
+    </content>
+    <link rel="alternate" href="http://rupert-lane.org/inform-mode/news.html"/>
+  </entry>
+
+  <entry>
+    <title>inform-mode available on github</title>
+    <id>tag:rupert-lane.org,2013-02-02:050059</id>
+    <updated>2013-02-02T13:00:59+08:00</updated>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p>inform-mode is now available
+        via <a href="https://github.com/rupertl/inform-mode">github</a>.
+        Pull requests welcome!</p>
+      
+        <p>Feb 1, 2013</p>
+      </div>
+    </content>
+    <link rel="alternate" href="http://rupert-lane.org/inform-mode/news.html"/>
+  </entry>
+
+  <entry>
+    <title>inform-mode 1.6.1 release for Marmalade</title>
+    <id>tag:rupert-lane.org,2012-10-23:110654</id>
+    <updated>2012-10-23T19:06:54+08:00</updated>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p>inform-mode is now available via
+        the <a href="http://marmalade-repo.org/">Marmalade</a>
+        packaging system. A new version 1.6.1 has been
+        released to make inform-mode compatible with ELPA
+        package format; there are no other changes in this
+        release.</p>
+      </div>
+    </content>
+    <link rel="alternate" href="http://rupert-lane.org/inform-mode/news.html"/>
+  </entry>
+
+  <entry>
+    <title>inform-mode 1.6.0 released</title>
+    <id>tag:rupert-lane.org,2012-05-01:112753</id>
+    <updated>2012-05-01T19:27:53+08:00</updated>
+    <content type="xhtml">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>inform-mode 1.6.0 has been released. This version
+      contains a number of bug fixes, feature improvements and
+      brings it up to date with recent versions of Emacs.</p>
+
+      <p>inform-mode can be downloaded
+      from <a href="http://www.rupert-lane.org/inform-mode/">
+      http://www.rupert-lane.org/inform-mode/</a>.</p>
+
+      <p>Changes in this version:</p>
+      
+      <h3>Features</h3>
+      <ul>
+        <li>Can now use customize to edit preferences</li>
+
+        <li>Improved tags generation to match directives and
+        objects declared with class name</li>
+
+        <li>Added a Makefile and documentation to make
+        installation easier</li>
+      </ul>
+
+      <h3>Bug fixes</h3>
+      <ul>
+        <li>Added missing Inform keywords, directives and
+        properties</li>
+
+        <li>Fixed font-lock error with multiple keywords, eg
+        'else return'</li>
+
+        <li>Fixed byte-compile errors and warnings</li>
+
+        <li>Fixed bug in next-error on Emacs (22+)</li>
+      </ul>
+
+      <h3>Other changes</h3>
+      <ul>
+        <li>Adopted GPL version 3</li>
+
+        <li>Added README, NEWS and AUTHORS files to
+        distribution</li>
+
+        <li>Simplified handling of regexps</li>
+
+        <li>Tested on recent versions of Emacs (22/23) and
+        XEmacs (21.4)</li>
+
+        <li>Improved website</li>
+      </ul>
+
+    </div>
+    </content>
+    <link rel="alternate" href="http://www.rupert-lane.org/inform-mode/news.html"/>
+  </entry>
+  
+  
+</feed>
+
