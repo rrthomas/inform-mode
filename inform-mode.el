@@ -1,12 +1,13 @@
 ;;; inform-mode.el --- Major mode for Inform 6 interactive fiction code
 
+;; Maintainer: Reuben Thomas <rrt@sc3d.org>
 ;; Author: Rupert Lane <rupert@rupert-lane.org>
 ;;         Gareth Rees <Gareth.Rees@cl.cam.ac.uk>
 ;;         Michael Fessler
 ;; Created: 1 Dec 1994
 ;; Version: 1.6.2
 ;; Released: 10-Oct-2013
-;; Url: http://www.rupert-lane.org/inform-mode/
+;; Url: https://rrthomas.github.io/inform-mode
 ;; Keywords: languages
 
 ;;; Copyright:
@@ -42,15 +43,7 @@
 ;; Inform, it selects inform-mode; otherwise it selects the mode given
 ;; by the variable `inform-maybe-other'.
 
-;; Latest version of this mode can be found at
-;; http://www.rupert-lane.org/inform-mode/
-
-;; Please send any bugs or comments to rupert@rupert-lane.org
-
-;;; History:
-
-;; See the NEWS file in the distribution
-;; or http://www.rupert-lane.org/inform-mode/news.html
+;; Please file bug reports at https://github.com/rrthomas/inform-mode
 
 ;;; Code:
 
