@@ -97,11 +97,8 @@ If you do not want a leading newline before opening braces then use:
   :type 'boolean
   :group 'inform-mode)
 
-(defvar inform-mode-map nil
-  "Keymap for Inform mode.")
-
-(if inform-mode-map nil
-  (let ((map (make-sparse-keymap "Inform")))
+(defvar inform-mode-map
+  (let ((map (make-sparse-keymap)))
     (setq inform-mode-map (make-sparse-keymap))
     (define-key inform-mode-map "\C-m" 'newline-and-indent)
     (define-key inform-mode-map "\177" 'backward-delete-char-untabify)
@@ -140,7 +137,8 @@ If you do not want a leading newline before opening braces then use:
     (put 'comment-region 'menu-enable 'mark-active)
     (define-key map [indent-region] '("Indent Region" . indent-region))
     (put 'indent-region 'menu-enable 'mark-active)
-    (define-key map [indent-line] '("Indent Line" . indent-for-tab-command))))
+    (define-key map [indent-line] '("Indent Line" . indent-for-tab-command)))
+  "Keymap for Inform mode.")
 
 (defvar inform-mode-abbrev-table nil
   "Abbrev table used while in Inform mode.")
