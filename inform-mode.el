@@ -1558,7 +1558,7 @@ Switches to the interpreter's output buffer if
                            (list story-file)
                          (list inform-interpreter-options
                                story-file)))))
-          ;; Console-mode 'terp
+          ;; Console-mode interpreter
           (require 'term)
           (when (or inform-interpreter-kill-old-process
                     (not proc))
