@@ -1536,8 +1536,7 @@ Switches to the interpreter's output buffer if
                                         ; term-exec anyway
             (progn
               ;; X gets confused if an application is restarted too quickly
-              ;; Assume X if not Win32
-              (unless (eq window-system 'w32)
+              (when (eq window-system 'x)
                 (message "Waiting for X...")
                 ;; On my system 0.1 seconds was enough - double it for safety
                 (sleep-for 0.2)
