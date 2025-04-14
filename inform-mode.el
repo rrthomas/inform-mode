@@ -50,7 +50,6 @@
 
 (require 'font-lock)
 (require 'regexp-opt)
-(require 'ispell)
 (require 'term)
 (require 'compile)
 (require 'imenu)
@@ -539,11 +538,6 @@ That is, one found at the start of a line.")
 
   Type \\[inform-run-project] to run the current project in an
   interpreter, either as a separate process or in an Emacs terminal buffer.
-
-* Spell checking:
-
-  Type \\[inform-spell-check-buffer] to spell check all strings in the buffer.
-  Type \\[ispell-word] to check the single word at point.
 
 * Key definitions:
 
@@ -1574,38 +1568,6 @@ Switches to the interpreter's output buffer if
             (term-pager-disable))
           (switch-to-buffer buffer)
           (goto-char (point-max)))))))
-
-
-
-;;;
-;;; Spell checking
-;;;
-
-(defun inform-spell-check-buffer ()
-  "Spellcheck all strings in the buffer using Ispell."
-  (interactive)
-  (let (start (spell-continue t))
-    (save-excursion
-      (goto-char (point-min))
-      (while (and (search-forward "\"" nil t)
-                  spell-continue)
-        (if (and (eq (car (inform-syntax-class)) 'string)
-                 ;; don't spell check include directives etc
-                 (not (save-excursion
-                        (forward-line 0)
-                        (looking-at inform-directive-regexp))))
-            (progn
-              (forward-char -1)         ; move point to quotation mark
-              (setq start (point))
-              (forward-sexp)
-              (ispell-region start (point))
-              ;; If user quit out (eg by pressing q while in ispell)
-              ;; don't continue looking for strings to check.
-              (setq spell-continue
-                    (and ispell-process
-                         (eq (process-status ispell-process) 'run)))))))))
-
-
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.h\\'". inform-maybe-mode))
