@@ -1364,19 +1364,12 @@ With a negative prefix ARG, go forwards."
 ;;; Build and run project
 ;;;
 
-;; Tell Emacs how to parse Inform compiler output so `next-error` can be
-;; used to jump to any errors. This is done at load time so the regexp
-;; is set up before compilation starts.
-;; XEmacs compile mode's builtin regexps work OK.
-
-(if (featurep 'emacs)
-    (if (and (boundp 'compilation-error-regexp-alist-alist)
-             (not (assoc 'inform-e1 compilation-error-regexp-alist-alist)))
-        (mapc
-         (lambda (item)
-           (push (car item) compilation-error-regexp-alist)
-           (push item compilation-error-regexp-alist-alist))
-         inform-compilation-error-regexp-alist)))
+;; Tell Emacs how to parse Inform compiler output.
+(eval-after-load 'compile
+  (lambda ()
+    (dolist (regexp inform-compilation-error-regexp-alist)
+      (add-to-list 'compilation-error-regexp-alist-alist regexp)
+      (add-to-list 'compilation-error-regexp-alist (car regexp)))))
 
 (defun inform-project-file ()
   "Return the project file to which the current file belongs.
