@@ -1475,7 +1475,7 @@ With a negative prefix ARG, go forwards."
 ;;; Build and run project
 ;;;
 
-;; Tell Emacs how to parse inform compiler output so next-error can be
+;; Tell Emacs how to parse Inform compiler output so `next-error` can be
 ;; used to jump to any errors. This is done at load time so the regexp
 ;; is set up before compilation starts.
 ;; XEmacs compile mode's builtin regexps work OK.
