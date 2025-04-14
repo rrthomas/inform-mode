@@ -1492,7 +1492,7 @@ With a negative prefix ARG, go forwards."
 
 (defun inform-build-project ()
   "Compile the current Inform project.
-The current project is given by variable`inform-project-file', or the current
+The current project is given by variable `inform-project-file', or the current
 file if this is NIL."
   (interactive)
   (let ((project-file (file-name-nondirectory (inform-project-file))))
@@ -1512,7 +1512,7 @@ file if this is NIL."
 
 (defun inform-run-project ()
   "Run the current Inform project using `inform-interpreter-command'.
-The current project is given by variable`inform-project-file', or
+The current project is given by variable `inform-project-file', or
 the current file if this is NIL. Will kill any running
 interpreter if `inform-interpreter-kill-old-process' is non-NIL.
 Switches to the interpreter's output buffer if
