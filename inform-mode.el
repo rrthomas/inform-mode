@@ -658,8 +658,6 @@ That is, one found at the start of a line.")
         indent-line-function 'inform-indent-line
         indent-region-function 'inform-indent-region
         local-abbrev-table inform-mode-abbrev-table
-        major-mode 'inform-mode
-        mode-name "Inform"
         parse-sexp-ignore-comments t
         require-final-newline t)
   (auto-fill-mode 1)
