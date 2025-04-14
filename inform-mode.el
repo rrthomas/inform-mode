@@ -6,7 +6,6 @@
 ;;         Michael Fessler
 ;; Created: 1 Dec 1994
 ;; Version: 1.6.2
-;; Released: 10-Oct-2013
 ;; Homepage: https://rrthomas.github.io/inform-mode
 ;; Keywords: languages
 ;; Package-Requires: ((emacs "24.1"))
