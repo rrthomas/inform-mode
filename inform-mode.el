@@ -490,7 +490,7 @@ That is, one found at the start of a line.")
 ;;;
 
 ;;;###autoload
-(defun inform-mode ()
+(define-derived-mode inform-mode prog-mode "Inform"
   "Major mode for editing Inform programs.
 
 * Inform syntax:
@@ -640,12 +640,8 @@ That is, one found at the start of a line.")
     If NIL, `inform-run-project' will switch to the interpreter buffer
     after running the interpreter."
 
-  (interactive)
   (if inform-startup-message
       (message "Emacs Inform mode version %s." inform-mode-version))
-  (kill-all-local-variables)
-  (use-local-map inform-mode-map)
-  (set-syntax-table inform-mode-syntax-table)
   (make-local-variable 'comment-column)
   (make-local-variable 'comment-end)
   (make-local-variable 'comment-indent-function)
@@ -677,8 +673,7 @@ That is, one found at the start of a line.")
         require-final-newline t)
   (auto-fill-mode 1)
   (if inform-autoload-tags
-      (inform-auto-load-tags-table))
-  (run-hooks 'inform-mode-hook))
+      (inform-auto-load-tags-table)))
 
 ;;;###autoload
 (defun inform-maybe-mode ()
