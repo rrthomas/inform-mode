@@ -168,7 +168,7 @@ If you do not want a leading newline before opening braces then use:
 (put 'inform-indent-cont-statement 'safe-local-variable 'integerp)
 
 (defcustom inform-indent-fixup-space t
-  "*If non-NIL, fix up space in object declarations."
+  "*If non-nil, fix up space in object declarations."
   :type 'boolean
   :group 'inform-indent)
 (put 'inform-indent-fixup-space 'safe-local-variable 'booleanp)
@@ -261,7 +261,7 @@ first line."
   :group 'inform-build-run)
 
 (defcustom inform-libraries-directory nil
-  "*If non-NIL, gives the directory in which libraries are found."
+  "*If non-nil, gives the directory in which libraries are found."
   :type '(radio (directory :tag "Library directory")
                 (const :tag "Disabled" nil))
   :group 'inform-build-run)
@@ -273,8 +273,8 @@ first line."
 
 (defcustom inform-interpreter-command "frotz"
   "*The command with which to run the ZCode interpreter.
-If a string, the name of a command.  If a symbol or a function value, an
-Emacs-lisp function to be called with the name of the story file."
+If a string, the name of a command.  If a symbol or a function value, a
+function to be called with the name of the story file."
   :type '(choice (string :tag "Command to run the ZCode interpreter")
                  (function :tag "Emacs-lisp function to run on the file"))
   :group 'inform-build-run)
@@ -292,7 +292,7 @@ Only used if `inform-interpreter-command' is a string."
 
 (defcustom inform-interpreter-is-graphical nil
   "*Controls whether `inform-interpreter-command' will be run in a buffer.
-If NIL, `inform-run-project' will switch to the interpreter buffer after
+If nil, `inform-run-project' will switch to the interpreter buffer after
 running the interpreter."
   :type 'boolean
   :group 'inform-build-run)
@@ -504,7 +504,7 @@ That is, one found at the start of a line.")
 
   Type \\[inform-retagify] to build (and load) a Tags table.
   Type \\[visit-tags-table] to load an existing Tags table.
-  If it exists, and if the variable `inform-autoload-tags' is non-NIL,
+  If it exists, and if the variable `inform-autoload-tags' is non-nil,
   the Tags table is loaded on entry to Inform Mode.
   With a Tags table loaded, type \\[find-tag] to find the declaration of
   the object, class or function under point.
@@ -579,15 +579,15 @@ That is, one found at the start of a line.")
     to the first.
 
   inform-indent-fixup-space (t)
-    If non-NIL, fix up space after `Object', `Class', `Nearby', `has',
+    If non-nil, fix up space after `Object', `Class', `Nearby', `has',
     `private' and `with', so that all the object's properties line up.
 
   inform-indent-action-column (40)
     Column at which action names should be placed in verb declarations.
-    If NIL, then action names are not moved.
+    If nil, then action names are not moved.
 
   inform-comments-line-up-p (nil)
-    If non-NIL, comments spread out over several lines will start on the
+    If non-nil, comments spread out over several lines will start on the
     same column as the first comment line.
 
   inform-strings-line-up-p (nil)
@@ -604,7 +604,7 @@ That is, one found at the start of a line.")
     The shell command with which to run the Inform compiler.
 
   inform-libraries-directory
-    If non-NIL, gives the directory in which the Inform libraries are
+    If non-nil, gives the directory in which the Inform libraries are
     found.
 
   inform-command-options
@@ -622,13 +622,13 @@ That is, one found at the start of a line.")
     used if `inform-interpreter-command' is a string.
 
   inform-interpreter-kill-old-process
-    If non-NIL, `inform-run-project' will kill any running interpreter
+    If non-nil, `inform-run-project' will kill any running interpreter
     process and start a new one.  If not, will switch to the interpreter's
     buffer (if necessary - see documentation for `inform-run-project' for
     details).
 
   inform-interpreter-is-graphical
-    If NIL, `inform-run-project' will switch to the interpreter buffer
+    If nil, `inform-run-project' will switch to the interpreter buffer
     after running the interpreter."
 
   (make-local-variable 'comment-column)
@@ -738,7 +738,7 @@ assumed that point is not inside a string or comment."
 ;;  blank      A blank line
 ;;  action     An action line in a verb declaration
 
-;; IN-OBJ is non-NIL if the line appears to be inside an Object, Nearby,
+;; IN-OBJ is non-nil if the line appears to be inside an Object, Nearby,
 ;; or Class declaration.
 
 ;; SEXPS is a list of pairs (D . P) where P is the start of a sexp
@@ -1081,7 +1081,7 @@ comments, return CURRENT-INDENT."
 Modifies whitespace to the left of point so that the character
 after point is at COLUMN. If this is impossible, one whitespace
 character is left. Avoids changing buffer gratuitously, and
-returns non-NIL if it actually changed the buffer. If a change is
+returns non-nil if it actually changed the buffer. If a change is
 made, point is moved to the end of any inserted or deleted
 whitespace. (If not, it may be moved at random.)"
   (let ((col (current-column)))
@@ -1102,7 +1102,7 @@ DATA is assumed to have been returned from `inform-syntax-class',
 called at the *start* of the current line. It is assumed that
 point is at the start of the line. Fixes up the spacing on `has',
 `with', `object', `nearby', `private' and `class' lines. Returns
-T if a change was made, NIL otherwise. Moves point."
+T if a change was made, nil otherwise. Moves point."
   (skip-syntax-forward " ")
   (let ((changed-p (inform-indent-to (inform-calculate-indentation data)))
         (syntax (car data)))
@@ -1255,7 +1255,7 @@ turns it off when negative, and just toggles it when zero."
 (defun inform-electric-semi (arg)
   "Insert the key typed (ARG) and correct line's indentation, as for semicolon.
 Special handling does not occur inside strings and comments.
-Inserts newline after the character if `inform-auto-newline' is non-NIL."
+Inserts newline after the character if `inform-auto-newline' is non-nil."
   (interactive "P")
   (if (and (not arg)
            (eolp)
@@ -1271,7 +1271,7 @@ Inserts newline after the character if `inform-auto-newline' is non-NIL."
 (defun inform-electric-comma (arg)
   "Insert the key typed (ARG) and correct line's indentation, as for comma.
 Special handling only occurs in object declarations.
-Inserts newline after the character if `inform-auto-newline' is non-NIL."
+Inserts newline after the character if `inform-auto-newline' is non-nil."
   (interactive "P")
   (if (and (not arg)
            (eolp)
@@ -1288,7 +1288,7 @@ Inserts newline after the character if `inform-auto-newline' is non-NIL."
 
 (defun inform-electric-brace (arg)
   "Insert the key typed (ARG) and correct line's indentation.
-Insert newlines before and after if `inform-auto-newline' is non-NIL."
+Insert newlines before and after if `inform-auto-newline' is non-nil."
   ;; This logic is the same as electric-c-brace.
   (interactive "P")
   (let (insertpos)
@@ -1338,8 +1338,8 @@ With a negative prefix ARG, search backwards."
       (forward-line 0))))
 
 ;; This function doubles as an `imenu-prev-name' function, so when
-;; called noninteractively it must return T if it was successful and NIL
-;; if not.  Argument NIL must correspond to moving backwards by 1.
+;; called noninteractively it must return T if it was successful and nil
+;; if not.  Argument nil must correspond to moving backwards by 1.
 
 (defun inform-prev-object (&optional arg)
   "Go to the previous object or class declaration in the file.
@@ -1378,7 +1378,7 @@ current file."
 (defun inform-build-project ()
   "Compile the current Inform project.
 The current project is given by variable `inform-project-file', or the current
-file if this is NIL."
+file if this is nil."
   (interactive)
   (let ((project-file (file-name-nondirectory (inform-project-file))))
     (compile
@@ -1398,10 +1398,10 @@ file if this is NIL."
 (defun inform-run-project ()
   "Run the current Inform project using `inform-interpreter-command'.
 The current project is given by variable `inform-project-file', or
-the current file if this is NIL. Will kill any running
-interpreter if `inform-interpreter-kill-old-process' is non-NIL.
+the current file if this is nil. Will kill any running
+interpreter if `inform-interpreter-kill-old-process' is non-nil.
 Switches to the interpreter's output buffer if
-`inform-interpreter-is-graphical' is NIL."
+`inform-interpreter-is-graphical' is nil."
   (interactive)
   (let* ((project-file (inform-project-file))
          (story-file-base (if (string-match "\\`[^.]+\\(\\.inf\\'\\)"
