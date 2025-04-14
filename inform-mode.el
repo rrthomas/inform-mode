@@ -83,11 +83,6 @@
   :type 'function
   :group 'inform)
 
-(defcustom inform-startup-message t
-  "*Non-nil means display a message when Inform mode is loaded."
-  :type 'boolean
-  :group 'inform)
-
 (defcustom inform-auto-newline t
   "*Non-nil means automatically newline before/after braces, after semicolons.
 If you do not want a leading newline before opening braces then use:
@@ -638,8 +633,6 @@ That is, one found at the start of a line.")
     If NIL, `inform-run-project' will switch to the interpreter buffer
     after running the interpreter."
 
-  (if inform-startup-message
-      (message "Emacs Inform mode version %s." inform-mode-version))
   (make-local-variable 'comment-column)
   (make-local-variable 'comment-end)
   (make-local-variable 'comment-indent-function)
