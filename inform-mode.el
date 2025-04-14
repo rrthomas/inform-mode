@@ -218,29 +218,27 @@ first line."
 ;;; Syntax variables
 ;;;
 
-(defvar inform-mode-syntax-table nil
+(defvar inform-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?\\ "\\" table)
+    (modify-syntax-entry ?\n ">" table)
+    (modify-syntax-entry ?! "<" table)
+    (modify-syntax-entry ?# "_" table)
+    (modify-syntax-entry ?% "." table)
+    (modify-syntax-entry ?& "." table)
+    (modify-syntax-entry ?\' "." table)
+    (modify-syntax-entry ?* "." table)
+    (modify-syntax-entry ?- "." table)
+    (modify-syntax-entry ?/ "." table)
+    (modify-syntax-entry ?\; "." table)
+    (modify-syntax-entry ?< "." table)
+    (modify-syntax-entry ?= "." table)
+    (modify-syntax-entry ?> "." table)
+    (modify-syntax-entry ?+ "." table)
+    (modify-syntax-entry ?| "." table)
+    (modify-syntax-entry ?^ "w" table)
+    table)
   "Syntax table to use in Inform mode buffers.")
-
-(if inform-mode-syntax-table
-    nil
-  (setq inform-mode-syntax-table (make-syntax-table))
-  (modify-syntax-entry ?\\ "\\" inform-mode-syntax-table)
-  (modify-syntax-entry ?\n ">" inform-mode-syntax-table)
-  (modify-syntax-entry ?! "<" inform-mode-syntax-table)
-  (modify-syntax-entry ?# "_" inform-mode-syntax-table)
-  (modify-syntax-entry ?% "." inform-mode-syntax-table)
-  (modify-syntax-entry ?& "." inform-mode-syntax-table)
-  (modify-syntax-entry ?\' "." inform-mode-syntax-table)
-  (modify-syntax-entry ?* "." inform-mode-syntax-table)
-  (modify-syntax-entry ?- "." inform-mode-syntax-table)
-  (modify-syntax-entry ?/ "." inform-mode-syntax-table)
-  (modify-syntax-entry ?\; "." inform-mode-syntax-table)
-  (modify-syntax-entry ?< "." inform-mode-syntax-table)
-  (modify-syntax-entry ?= "." inform-mode-syntax-table)
-  (modify-syntax-entry ?> "." inform-mode-syntax-table)
-  (modify-syntax-entry ?+ "." inform-mode-syntax-table)
-  (modify-syntax-entry ?| "." inform-mode-syntax-table)
-  (modify-syntax-entry ?^ "w" inform-mode-syntax-table))
 
 
 ;;;
