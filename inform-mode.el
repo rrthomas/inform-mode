@@ -660,9 +660,7 @@ That is, one found at the start of a line.")
         local-abbrev-table inform-mode-abbrev-table
         parse-sexp-ignore-comments t
         require-final-newline t)
-  (auto-fill-mode 1)
-  (if inform-autoload-tags
-      (inform-auto-load-tags-table)))
+  (auto-fill-mode 1))
 
 ;;;###autoload
 (defun inform-maybe-mode ()
@@ -1232,87 +1230,6 @@ appropriately with trailing backslashes. ARG is ignored."
 
 
 ;;;
-;;; Tags
-;;;
-
-(defun inform-project-file ()
-  "Return the project file to which the current file belongs.
-This is either the value of variable `inform-project-file' or the
-current file."
-  (or inform-project-file (buffer-file-name)))
-
-(defun inform-project-file-list ()
-  "Builds a list of files in the current project and return it.
-It recursively searches through included files, but tries to avoid loops."
-  (let* ((project-file (expand-file-name (inform-project-file)))
-         (project-dir (file-name-directory project-file))
-         (in-file-list (list project-file))
-         out-file-list
-         (temp-buffer (generate-new-buffer "*Inform temp*")))
-    (message "Building list of files in project...")
-    (save-excursion
-      (while in-file-list
-        (if (member (car in-file-list) out-file-list)
-            nil
-          (set-buffer temp-buffer)
-          (erase-buffer)
-          (insert-file-contents (car in-file-list))
-          (setq out-file-list (cons (car in-file-list) out-file-list)
-                in-file-list (cdr in-file-list))
-          (goto-char (point-min))
-          (while (re-search-forward "\\<#?include\\s-+\">\\([^\"]+\\)\"" nil t)
-            (let ((file (match-string 1)))
-              ;; We need to duplicate Inform's file-finding algorithm:
-              (if (not (string-match "\\." file))
-                  (setq file (concat file ".inf")))
-              (if (not (file-name-absolute-p file))
-                  (setq file (expand-file-name file project-dir)))
-              (setq in-file-list (cons file in-file-list))))))
-      (kill-buffer nil))
-    (message "Building list of files in project...done")
-    out-file-list))
-
-(defun inform-auto-load-tags-table ()
-  "Visit tags table for current project, if it exists.
-Do nothing if there is no current project, or no tags table."
-  (let (tf (project (inform-project-file)))
-    (if project
-        (progn
-          (setq tf (expand-file-name "TAGS" (file-name-directory project)))
-          (if (file-readable-p tf)
-              ;; visit-tags-table seems to just take first parameter in XEmacs
-              (visit-tags-table tf))))))
-
-(defun inform-retagify ()
-  "Create a tags table for the files in the current project.
-The current project contains all the files included using Inform's
-`Include \">file\";' syntax by the project file, which is that given by
-the variable `inform-project-file' \(if this is set\), or the current
-file \(if not\).  Files included recursively are included in the tags
-table."
-  (interactive)
-  (let* ((project-file (inform-project-file))
-         (project-dir (file-name-directory project-file))
-         (files (inform-project-file-list))
-         (tags-file (expand-file-name "TAGS" project-dir)))
-    (message "Running external tags program...")
-
-    ;; Uses call-process to work on windows/nt systems (not tested)
-    ;; Regexp matches routines or object/class definitions
-    (apply (function call-process)
-           inform-etags-program
-           nil nil nil
-           "--regex=/\\([A-Za-z0-9_]+\\|\\[\\)\\([ \\t]*->\\)*[ \\t]*\\<\\([A-Za-z_][A-Za-z0-9_]*\\)/\\3/"
-           (concat "--output=" tags-file)
-           "--language=none"
-           files)
-    
-    (message "Running external tags program...done")
-    (inform-auto-load-tags-table)))
-
-
-
-;;;
 ;;; Electric keys
 ;;;
 
@@ -1461,6 +1378,11 @@ With a negative prefix ARG, go forwards."
            (push item compilation-error-regexp-alist-alist))
          inform-compilation-error-regexp-alist)))
 
+(defun inform-project-file ()
+  "Return the project file to which the current file belongs.
+This is either the value of variable `inform-project-file' or the
+current file."
+  (or inform-project-file (buffer-file-name)))
 
 (defun inform-build-project ()
   "Compile the current Inform project.
