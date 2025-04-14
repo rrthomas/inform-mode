@@ -258,11 +258,10 @@ first line."
 
 (defcustom inform-project-file nil
   "*The top level Inform project file to which the current file belongs."
+  :local t
   :type '(radio (file :tag "Project file name")
                 (const :tag "Disabled" nil))
   :group 'inform-mode-build-run)
-
-(make-variable-buffer-local 'inform-project-file)
 
 (defcustom inform-autoload-tags t
   "*Non-nil means automatically load tags table when entering Inform mode."
@@ -1611,14 +1610,9 @@ Switches to the interpreter's output buffer if
 
 
 ;;;###autoload
-(setq auto-mode-alist
-      (append '(("\\.h\\'"   . inform-maybe-mode)
-                ("\\.inf\\'" . inform-mode))
-              auto-mode-alist))
-
+(add-to-list 'auto-mode-alist '("\\.h\\'". inform-maybe-mode))
 ;;;###autoload
-(add-hook 'inform-mode-hook 'turn-on-font-lock)
-
+(add-to-list 'auto-mode-alist '("\\.inf\\'" . inform-mode))
 
 (provide 'inform-mode)
 
