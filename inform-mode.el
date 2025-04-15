@@ -8,7 +8,7 @@
 ;; Version: 2.0.0
 ;; Homepage: https://rrthomas.github.io/inform-mode
 ;; Keywords: languages
-;; Package-Requires: ((emacs "24.1"))
+;; Package-Requires: ((emacs "29.1"))
 
 ;;; Copyright:
 
