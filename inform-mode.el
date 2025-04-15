@@ -1413,24 +1413,16 @@ Switches to the interpreter's output buffer if
              proc
              (kill-process proc))
         (if (or inform-interpreter-is-graphical
-                (eq window-system 'w32)) ; Windows can't handle
-                                        ; term-exec anyway
-            (progn
-              ;; X gets confused if an application is restarted too quickly
-              (when (eq window-system 'x)
-                (message "Waiting for X...")
-                ;; On my system 0.1 seconds was enough - double it for safety
-                (sleep-for 0.2)
-                (message ""))
-              (when (or inform-interpreter-kill-old-process
-                        (not proc))
-                (apply (function start-process)
-                       name buffer inform-interpreter-command
-                       ;; Some shells barf on "empty" arguments
-                       (if (string-equal "" inform-interpreter-options)
-                           (list story-file)
-                         (list inform-interpreter-options
-                               story-file)))))
+                (eq window-system 'w32)) ; Windows can't use term-exec
+            (when (or inform-interpreter-kill-old-process
+                      (not proc))
+              (apply (function start-process)
+                     name buffer inform-interpreter-command
+                     ;; Some shells barf on "empty" arguments
+                     (if (string-equal "" inform-interpreter-options)
+                         (list story-file)
+                       (list inform-interpreter-options
+                             story-file))))
           ;; Console-mode interpreter
           (require 'term)
           (when (or inform-interpreter-kill-old-process
