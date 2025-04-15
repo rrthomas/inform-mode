@@ -1408,7 +1408,12 @@ Switches to the interpreter's output buffer if
         (funcall inform-interpreter-command story-file)
       ;; inform-interpreter-command is truly a command
       (let* ((buffer (get-buffer-create (concat "*" name "*")))
-             (proc (get-buffer-process buffer)))
+             (proc (get-buffer-process buffer))
+             ;; Some shells barf on "empty" arguments
+             (args (if (string-equal "" inform-interpreter-options)
+                  (list story-file)
+                (list inform-interpreter-options
+                      story-file))))
         (and inform-interpreter-kill-old-process
              proc
              (kill-process proc))
@@ -1417,12 +1422,7 @@ Switches to the interpreter's output buffer if
             (when (or inform-interpreter-kill-old-process
                       (not proc))
               (apply (function start-process)
-                     name buffer inform-interpreter-command
-                     ;; Some shells barf on "empty" arguments
-                     (if (string-equal "" inform-interpreter-options)
-                         (list story-file)
-                       (list inform-interpreter-options
-                             story-file))))
+                     name buffer inform-interpreter-command args))
           ;; Console-mode interpreter
           (require 'term)
           (when (or inform-interpreter-kill-old-process
@@ -1430,11 +1430,7 @@ Switches to the interpreter's output buffer if
             (set-buffer buffer)
             (term-mode)
             (erase-buffer)
-            (term-exec buffer name inform-interpreter-command nil
-                       (if (string-equal "" inform-interpreter-options)
-                           (list story-file)
-                         (list inform-interpreter-options
-                               story-file)))
+            (term-exec buffer name inform-interpreter-command nil args)
             (term-char-mode)
             (term-pager-disable))
           (switch-to-buffer buffer)
