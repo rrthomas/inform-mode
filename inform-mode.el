@@ -1352,11 +1352,10 @@ With a negative prefix ARG, go forwards."
 ;;;
 
 ;; Tell Emacs how to parse Inform compiler output.
-(eval-after-load 'compile
-  (lambda ()
-    (dolist (regexp inform-compilation-error-regexp-alist)
-      (add-to-list 'compilation-error-regexp-alist-alist regexp)
-      (add-to-list 'compilation-error-regexp-alist (car regexp)))))
+(lambda ()
+  (dolist (regexp inform-compilation-error-regexp-alist)
+    (add-to-list 'compilation-error-regexp-alist-alist regexp)
+    (add-to-list 'compilation-error-regexp-alist (car regexp))))
 
 (defun inform-project-file ()
   "Return the project file to which the current file belongs.
