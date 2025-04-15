@@ -129,50 +129,50 @@ If you do not want a leading newline before opening braces then use:
 (defcustom inform-indent-property 8
   "*Indentation of the start of a property declaration."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-property 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-indent-has-with-class 1
   "*Indentation of has/with/class lines in object declarations."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-has-with-class 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-indent-level 4
   "*Indentation of lines of block relative to first line of block."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-level 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-indent-label-offset -3
   "*Indentation of label relative to where it should be."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-label-offset 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-indent-cont-statement 4
   "*Indentation of continuation relative to start of statement."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-cont-statement 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-indent-fixup-space t
   "*If non-nil, fix up space in object declarations."
   :type 'boolean
-  :group 'inform-indent)
-(put 'inform-indent-fixup-space 'safe-local-variable 'booleanp)
+  :group 'inform-indent
+  :safe 'booleanp)
 
 (defcustom inform-indent-action-column 40
   "*Column at which action names should be placed in verb declarations."
   :type 'integer
-  :group 'inform-indent)
-(put 'inform-indent-action-column 'safe-local-variable 'integerp)
+  :group 'inform-indent
+  :safe 'integerp)
 
 (defcustom inform-comments-line-up-p nil
   "*If non-nil, comments spread over several lines will line up with the first."
   :type 'boolean
-  :group 'inform-indent)
-(put 'inform-comments-line-up-p 'safe-local-variable 'booleanp)
+  :group 'inform-indent
+  :safe 'booleanp)
 
 (defcustom inform-strings-line-up-p nil
   "*Variable controlling indentation of multi-line strings.
@@ -185,14 +185,14 @@ first line."
                 (integer :tag "Column to indent to")
                 (const :tag "Line up with first character of string" char)
                 (const :tag "Line up with open quote on first line" quote))
-  :group 'inform-indent)
-(put 'inform-strings-line-up-p 'safe-local-variable 'sexp)
+  :group 'inform-indent
+  :safe 'sexp)
 
 (defcustom inform-indent-semicolon t
   "*If nil, a semicolon on a line of its own will not be indented."
   :type 'boolean
-  :group 'inform-indent)
-(put 'inform-indent-semicolon 'safe-local-variable 'booleanp)
+  :group 'inform-indent
+  :safe 'booleanp)
 
 
 
