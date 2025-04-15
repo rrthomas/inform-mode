@@ -88,41 +88,32 @@ If you do not want a leading newline before opening braces then use:
   :type 'boolean
   :group 'inform)
 
-(defvar inform-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map "\C-m" 'newline-and-indent)
-    (define-key map "\177" 'backward-delete-char-untabify)
-    (define-key map "\C-c\C-b" 'inform-build-project)
-    (define-key map "\C-c\C-c" 'inform-run-project)
-    (define-key map "\C-c\C-a" 'inform-toggle-auto-newline)
-    (define-key map "\M-n" 'inform-next-object)
-    (define-key map "\M-p" 'inform-prev-object)
-    (define-key map "{" 'inform-electric-brace)
-    (define-key map "}" 'inform-electric-brace)
-    (define-key map "]" 'inform-electric-brace)
-    (define-key map ";" 'inform-electric-semi)
-    (define-key map ":" 'inform-electric-key)
-    (define-key map "!" 'inform-electric-key)
-    (define-key map "," 'inform-electric-comma)
-    (define-key map [menu-bar] (make-sparse-keymap))
-    (define-key map [menu-bar inform] (cons "Inform" map))
-    (define-key map [separator4] '("--" . nil))
-    (define-key map [separator3] '("--" . nil))
-    (define-key map [load-tags] '("Load tags table" . visit-tags-table))
-    (define-key map [retagify] '("Rebuild tags table" . inform-retagify))
-    (define-key map [build] '("Build project" . inform-build-project))
-    (define-key map [run] '("Run project" . inform-run-project))
-    (define-key map [separator2] '("--" . nil))
-    (define-key map [next-object] '("Next object" . inform-next-object))
-    (define-key map [prev-object] '("Previous object" . inform-prev-object))
-    (define-key map [separator1] '("--" . nil))
-    (define-key map [comment-region] '("Comment Out Region" . comment-region))
-    (put 'comment-region 'menu-enable 'mark-active)
-    (define-key map [indent-region] '("Indent Region" . indent-region))
-    (put 'indent-region 'menu-enable 'mark-active)
-    (define-key map [indent-line] '("Indent Line" . indent-for-tab-command))
-    map)
-  "Keymap for Inform mode.")
+(defvar-keymap inform-mode-map
+  :doc "Keymap for Inform mode."
+  :menu '("Inform"
+          ["Indent Line" indent-for-tab-command]
+          ["Indent Region" indent-region :enable mark-active]
+          ["Comment Out Region" comment-region :enable mark-active]
+          (menu-item "--")
+          ["Previous object" inform-prev-object]
+          ["Next object" inform-next-object]
+          (menu-item "--")
+          ["Run project" inform-run-project]
+          ["Build project" inform-build-project])
+  "RET" 'newline-and-indent
+  "DEL" 'backward-delete-char-untabify
+  "C-c C-b" 'inform-build-project
+  "C-c C-c" 'inform-run-project
+  "C-c C-a" 'inform-toggle-auto-newline
+  "M-n" 'inform-next-object
+  "M-p" 'inform-prev-object
+  "{" 'inform-electric-brace
+  "}" 'inform-electric-brace
+  "]" 'inform-electric-brace
+  ";" 'inform-electric-semi
+  ":" 'inform-electric-key
+  "!" 'inform-electric-key
+  "," 'inform-electric-comma)
 
 (defvar inform-mode-abbrev-table nil
   "Abbrev table used while in Inform mode.")
