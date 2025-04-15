@@ -92,8 +92,6 @@ If you do not want a leading newline before opening braces then use:
   (let ((map (make-sparse-keymap)))
     (define-key map "\C-m" 'newline-and-indent)
     (define-key map "\177" 'backward-delete-char-untabify)
-    (define-key map "\C-c\C-r" 'inform-retagify)
-    (define-key map "\C-c\C-t" 'visit-tags-table)
     (define-key map "\C-c\C-b" 'inform-build-project)
     (define-key map "\C-c\C-c" 'inform-run-project)
     (define-key map "\C-c\C-a" 'inform-toggle-auto-newline)
