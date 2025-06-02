@@ -5,7 +5,7 @@
 ;;         Gareth Rees <Gareth.Rees@cl.cam.ac.uk>
 ;;         Michael Fessler
 ;; Created: 1 Dec 1994
-;; Version: 2.0.0
+;; Version: 2.0.1
 ;; Homepage: https://rrthomas.github.io/inform-mode
 ;; Keywords: languages
 ;; Package-Requires: ((emacs "29.1"))
@@ -74,7 +74,7 @@
 ;;; General variables
 ;;;
 
-(defconst inform-mode-version "2.0.0")
+(defconst inform-mode-version "2.0.1")
 
 (defcustom inform-maybe-other 'c-mode
   "*`inform-maybe-mode' runs this if current file is not in Inform mode."
